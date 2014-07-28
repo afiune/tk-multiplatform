@@ -1,0 +1,28 @@
+---
+driver:
+  name: ec2
+  aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  security_group_ids: ["sg-70c2bf15"]
+  region: us-east-1
+  flavor_id: m1.large
+  availability_zone: us-east-1b
+  require_chef_omnibus: true
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: centos-6.4
+  - name: ubuntu-13.04
+  - name: windows-2008R2
+    transport:
+      name: winrm
+  - name: windows-2012R2
+    transport:
+      name: winrm
+suites:
+- name: default
+  run_list:
+    - 'recipe[tk-multiplatform::default]'
+  attributes:
