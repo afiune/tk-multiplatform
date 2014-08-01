@@ -4,6 +4,7 @@ driver:
   aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
   aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
   security_group_ids: ["sg-70c2bf15"]
+  aws_ssh_key_id: "/Users/salimafiune/chef/afiune.pem"
   region: us-east-1
   flavor_id: m1.large
   availability_zone: us-east-1b
@@ -21,6 +22,7 @@ platforms:
   - name: windows-2012R2
     transport:
       name: winrm
+      max_threads: 25
 suites:
 - name: default
   run_list:
