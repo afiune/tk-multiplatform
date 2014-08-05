@@ -6,7 +6,7 @@ driver:
   security_group_ids: ["sg-70c2bf15"]
   aws_ssh_key_id: "/Users/salimafiune/chef/afiune.pem"
   region: us-east-1
-  flavor_id: m1.large
+  flavor_id: m1.small
   availability_zone: us-east-1b
   require_chef_omnibus: true
 
@@ -14,15 +14,15 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos-6.4
-  - name: ubuntu-13.04
-  - name: windows-2008R2
-    transport:
-      name: winrm
-  - name: windows-2012R2
-    transport:
-      name: winrm
-      max_threads: 25
+- name: centos-6.4
+- name: ubuntu-13.04
+- name: windows-2008R2
+  transport:
+    name: winrm
+- name: windows-2012R2
+  transport:
+    name: winrm
+    max_threads: 25
 suites:
 - name: default
   run_list:
