@@ -9,13 +9,22 @@ provisioner:
   name: chef_zero
 
 platforms:
-- name: centos-6.5
 - name: windows-2008R2
-  driver_config:
-    box: windows-2008R2
   transport:
     name: winrm
+    max_threads: 1
+  driver:
+    name: ec2
+    aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+    aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+    security_group_ids: ["sg-70c2bf15"]
+    aws_ssh_key_id: afiunechef
+    region: us-east-1
+    flavor_id: m1.small
+    availability_zone: us-east-1b
 - name: ubuntu-13.04
+  provisioner:
+    name: chef_solo
   driver:
     name: ec2
     aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
@@ -26,18 +35,15 @@ platforms:
     flavor_id: m1.small
     availability_zone: us-east-1b
 - name: windows-2012R2
+  provisioner:
+    name: chef_solo
+  driver_config:
+    box: windows-2012R2
+    box_url: https://s3.amazonaws.com/box-cutter-us-east-1-cloudtrail/windows/virtualbox4.3.14/win2012-datacenter-nocm.box
   transport:
     name: winrm
-    max_threads: 25
-  driver:
-    name: ec2
-    aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-    aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-    security_group_ids: ["sg-70c2bf15"]
-    aws_ssh_key_id: afiunechef
-    region: us-east-1
-    flavor_id: m1.small
-    availability_zone: us-east-1b
+    max_threads: 1
+- name: centos-6.5
 
 suites:
 - name: default

@@ -7,19 +7,18 @@ provisioner:
 platforms:
 - name: centos-6.5
 - name: ubuntu-13.04
-- name: windows2012r2_cloud
+- name: windows-2012R2
   driver_config:
-    box: windows2012r2_cloud
-    box_url: https://s3.amazonaws.com/box-cutter-us-east-1-cloudtrail/windows/virtualbox4.3.12/win2012r2-datacenter-chef11.12.8.box
+    box: windows-2012R2
+    box_url: https://s3.amazonaws.com/box-cutter-us-east-1-cloudtrail/windows/virtualbox4.3.14/win2012-datacenter-nocm.box
   transport:
     name: winrm
     max_threads: 25
-- name: windows7_empty
+- name: windows-7
   driver_config:
-    box: windows7_empty
+    box: windows-7
   transport:
     name: winrm
-    max_threads: 2
 
 suites:
 - name: default

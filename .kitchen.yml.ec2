@@ -23,6 +23,7 @@ platforms:
   transport:
     name: winrm
     max_threads: 25
+    
 suites:
 - name: default
   run_list:
